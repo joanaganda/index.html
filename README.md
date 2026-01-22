@@ -1,2 +1,183 @@
-# index
-#To expand the perspective of folklore listeners
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>folklore by Taylor Swift</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root { --f-brown: #4b3f35; --f-cream: #f4f1ea; }
+        body { font-family: 'IM Fell DW Pica', serif; background-color: var(--f-cream); color: var(--f-brown); margin: 0; overflow-x: hidden; }
+
+        .hero { 
+            height: 100vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560') no-repeat center center/cover; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;
+        }
+        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-style: italic; }
+        .btn-triangle { background: transparent; border: 1px solid white; color: white; padding: 12px 30px; font-style: italic; transition: 0.4s; margin-top: 20px;}
+        .btn-triangle:hover { background: white; color: var(--f-brown); }
+
+        .songs-section { padding: 80px 0; background-color: var(--f-brown); color: var(--f-cream); }
+        .song-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(244, 241, 234, 0.1); padding: 40px 20px; transition: 0.4s; cursor: pointer; text-align: center; height: 100%; }
+        .song-card:hover { background: var(--f-cream); color: var(--f-brown); transform: translateY(-10px); }
+        
+        .modal-content { background-color: var(--f-cream); color: var(--f-brown); border-radius: 0; border: none; }
+        .lore-box { background: rgba(75, 63, 53, 0.05); padding: 25px; border-left: 4px solid var(--f-brown); margin-bottom: 25px; }
+        .lyrics-section { white-space: pre-line; font-style: italic; background: #fff; padding: 35px; border: 1px solid #ddd; max-height: 450px; overflow-y: auto; line-height: 1.8; }
+        .label-text { font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; color: #8a7d71; display: block; margin-bottom: 5px; }
+        
+        .char-analysis { background: white; padding: 25px; border: 1px solid #e0e0e0; border-top: 4px solid var(--f-brown); margin-bottom: 20px; }
+        .char-header { font-size: 1.4rem; font-style: italic; color: var(--f-brown); margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div data-aos="fade-up">
+            <h1>folklore</h1>
+            <button class="btn btn-triangle" onclick="new bootstrap.Modal(document.getElementById('triModal')).show()">The Love Triangle Deep Dive</button>
+        </div>
+    </section>
+
+    <section class="songs-section">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 3rem; font-style: italic;">the tracklist</h2>
+            <div class="row g-4" id="tracklist-container"></div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="songModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0"><h3 id="songTitle" style="font-style: italic; font-size: 2.5rem;"></h3><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <div class="lore-box"><span class="label-text">Story / Lore</span><p id="songLore" class="mb-0"></p></div>
+                    <span class="label-text">Complete Lyrics</span>
+                    <div class="lyrics-section" id="songLyrics"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="triModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0"><h2>The Teenage Love Triangle</h2><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="char-analysis">
+                                <div class="char-header">BETTY — The One Who Remembered</div>
+                                <p>Betty’s love was quiet, observant, and deeply rooted. She noticed details—how James kicked rocks when he was nervous, how his laughter softened when he forgot to perform. Loving him felt natural, like gravity. She never questioned whether he loved her; she questioned whether he understood love at all.</p>
+                                <p>Betty didn’t need constant reassurance. What she needed was consistency. She believed love was something you returned to every day, not something you chased when it felt exciting. That belief is what made James’s absence cut so deeply. He didn’t just leave—he broke the unspoken contract Betty thought they shared.</p>
+                                <p>When James disappeared that summer, Betty didn’t fight. She waited. Not because she was weak, but because she trusted memory. She believed that what they had was too real to be replaced by novelty. Still, the waiting changed her. Love that waits learns how to harden without breaking.</p>
+                                <p>By the time James came back, Betty was no longer the girl he left behind. She had learned that intuition doesn’t protect you from pain—it only prepares you to survive it.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="char-analysis">
+                                <div class="char-header">JAMES — The One Who Ran</div>
+                                <p>James loved Betty, but he didn’t understand her. He felt her steadiness as pressure, her certainty as expectation. Loving her meant becoming someone he wasn’t ready to be. So when things felt heavy, he fled—not out of malice, but fear.</p>
+                                <p>James didn’t wake up planning to hurt anyone. He simply followed impulse. He wanted to feel wanted without responsibility. When he met the August girl, she offered him warmth without demand, affection without accountability. To James, it felt like freedom.</p>
+                                <p>What he never understood was that freedom without honesty is still a lie. James told himself stories to justify his choices. He said he was young. He said it didn’t mean anything. He said he would fix it later. But “later” came with consequences he wasn’t prepared to face.</p>
+                                <p>When summer ended, reality returned. And so did guilt. James’s apology wasn’t insincere—but it was incomplete. He wanted forgiveness without fully understanding what he broke.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="char-analysis">
+                                <div class="char-header"> AUGUST — The One Who Hoped</div>
+                                <p>The August girl knew the truth from the beginning. She knew she wasn’t the first choice. She knew the love had an expiration date. But she chose to love anyway.</p>
+                                <p>She didn’t fall for James because he promised her forever. She fell for him because he showed up. He looked at her like she mattered in the moment—and sometimes, the moment feels like enough. August is not naïve. She is willfully hopeful. She believes that love is worth the pain, even when it ends. She understands that being chosen temporarily still counts as being chosen at all.</p>
+                                <p>When James left, she didn’t fight him. She didn’t blame Betty. Her grief was quiet and internalized. She mourned not just James, but the version of herself who thought she might be loved openly someday.</p>
+                                <p>Her tragedy is not that she lost him—it’s that she never truly had him.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4" style="background: #ece9e2; border-radius: 5px;">
+                        <h3 class="char-header"> HOW THE TRIANGLE COLLAPSES</h3>
+                        <p>This love triangle isn’t about cheating—it’s about emotional imbalance.</p>
+                        <ul>
+                            <li>Betty loved with depth and expectation</li>
+                            <li>James loved with impulse and fear</li>
+                            <li>August loved with awareness and hope</li>
+                        </ul>
+                        <p>No one’s love was fake. But not all love is compatible. James’s greatest flaw was believing love should feel easy. The moment it became complicated, he assumed something was wrong. He didn’t understand that complexity is proof of emotional reality.</p>
+                        <p>Betty’s strength became her wound. She loved someone who wasn’t equipped to love her back the same way. Her silence was mistaken for forgiveness before it was ever given.</p>
+                        <p>August’s openness became her vulnerability. She accepted less because she believed love was scarce.</p>
+                        
+                        <h4 class="mt-4 char-header">YEARS LATER — THE AFTERMATH</h4>
+                        <p><strong>Betty:</strong> She becomes careful, not cold. She still loves deeply, but she no longer waits for people to choose her. The cardigan remains—a symbol of warmth she now gives only to those who stay.</p>
+                        <p><strong>James:</strong> He grows older and finally understands what he lost. But realization doesn’t reverse time. His memory of Betty becomes a lesson, not a destination.</p>
+                        <p><strong>August:</strong> She learns to demand more. The summer becomes a story she tells herself when she needs to remember she once loved bravely, even if foolishly.</p>
+                        
+                        <h4 class="mt-4 char-header"> THE CORE TRAGEDY</h4>
+                        <p>The heartbreak of this triangle isn’t betrayal—it’s timing and emotional readiness. They didn’t meet at the wrong time. <strong>They met at the right time to learn the wrong lessons.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Track Data - All 17 Songs
+        const songs = [
+            { id: "01", title: "the 1", lore: "This story opens from a future vantage point. The narrator is no longer inside the relationship—she is standing far enough away to see it clearly.", lyrics: "I'm doing good, I'm on some new shit\nBeen saying \"yes\" instead of \"no\"\nI thought I saw you at the bus stop, I didn't though\nI hit the ground running each night\nI hit the kitchen mic, all right\nI write with a pencil, no, with a pen, no, with a keyboard\n\nBut we were something, don't you think so?\nRoaring twenties, tossing pennies in the pool\nAnd if my wishes came true\nIt would've been you\nIn my defense, I have none\nFor never leaving well enough alone\nBut it would've been fun\nIf you would've been the one\n\nI have this dream you're doing cool shit\nHaving adventures on your own\nYou meet some woman on the internet and take her home\nWe never painted the palace pink\nI hit the Sunday matinée\nYou know the greatest films of all time were never made\n\nI guess you never know, never know\nAnd if you wanted me, you really should've showed\nAnd if you never bleed, you're never gonna grow\nAnd it's alright now\n\nBut we were something, don't you think so?\nRoaring twenties, tossing pennies in the pool\nAnd if my wishes came true\nIt would've been you\nIn my defense, I have none\nFor never leaving well enough alone\nBut it would've been fun\nIf you would've been the one\n\nI persist and resist the temptation to ask you\nIf one thing had been different\nWould everything be different today?\n\nWe were something, don't you think so?\nRosé flowing with your chosen family\nAnd it would've been sweet\nIf it could've been me\nIn my defense, I have none\nFor never leaving well enough alone\nBut it would've been fun\nIf you would've been the one" },
+            { id: "02", title: "cardigan", lore: "Betty speaking years later. She remembers being young, insecure, and easily dismissed.", lyrics: "Vintage tee, brand new phone\nHigh heels on cobblestones\nWhen you are young, they assume you know nothing\nSequined smile, black lipstick\nSensual politics\nWhen you are young, they assume you know nothing\n\nBut I knew you\nDancin' in your Levi's\nDrunk under a streetlight, I\nI knew you\nHand under my sweatshirt\nBaby, kiss it better, I\n\nAnd when I felt like I was an old cardigan\nUnder someone's bed\nYou put me on and said I was your favorite\n\nA friend to all is a friend to none\nChase two girls, lose the one\nWhen you are young, they assume you know nothing\n\nBut I knew you\nPlaying hide-and-seek and\nGiving me your weekends, I\nI knew you\nYour heartbeat on the High Line\nOnce in twenty lifetimes, I\n\nAnd when I felt like I was an old cardigan\nUnder someone's bed\nYou put me on and said I was your favorite\n\nTo kiss in cars and downtown bars\nWas all we needed\nYou drew stars around my scars\nBut now I'm bleedin'\n\n'Cause I knew you\nSteppin' on the last train\nMarked me like a bloodstain, I\nI knew you\nTried to change the ending\nPeter losing Wendy, I\nI knew you\nLeavin' like a father\nRunning like water, I\nAnd when you are young, they assume you know nothing\n\nBut I knew you'd linger like a tattoo kiss\nI knew you'd haunt all of my what-ifs\nThe smell of smoke would stick around this long\n'Cause I knew everything when I was young\nI knew I'd curse you for the longest time\nChasin' shadows in the grocery line\nI knew you'd miss me once the thrill expired\nAnd you'd be standin' in my front porch light\nAnd I knew you'd come back to me\nYou'd come back to me\nAnd you'd come back to me\nAnd you'd come back\n\nAnd when I felt like I was an old cardigan\nUnder someone's bed\nYou put me on and said I was your favorite" },
+            { id: "03", title: "the last great american dynasty", lore: "The story of Rebekah Harkness, who owned Taylor's Rhode Island home.", lyrics: "Rebekah rode up on the afternoon train, it was sunny\nHer saltbox house on the coast took her mind off St. Louis\nBill was the heir to the Standard Oil name and money\nAnd the town said, \"How did a middle-class divorcée do it?\"\n\nThe wedding was charming, if a little bit loud\nBut their parties were tasteless, if a little bit proud\nThe doctor had told him to settle down\nIt must have been her fault his heart gave out\n\nAnd they say \"There goes the last great American dynasty\"\n\"Who knows, if she never showed up, what could've been\"\nThere goes the maddest woman this town has ever seen\nShe had a marvelous time ruining everything\n\nRebekah gave up on the Rhode Island set forever\nFlew in all her Bitch Pack friends from the city\nFilled the pool with Champagne and swam with the big names\nAnd blew through the money on the boys and the ballet\nAnd losing on card game bets with Dalí\n\nAnd they say \"There goes the last great American dynasty\"\n\"Who knows, if she never showed up, what could've been\"\nThere goes the maddest woman this town has ever seen\nShe had a marvelous time ruining everything\n\nThey say she was seen on occasion\nPacing the rocks, staring out at the midnight sea\nAnd in a feud with her neighbor\nShe stole his dog and dyed it key lime green\nFifty years is a long time\nHoliday House sat quietly on that beach\nFree of women with madness, their men and bad habits\nAnd then it was bought by me\n\nWho knows, if I never showed up, what could've been\nThere goes the loudest woman this town has ever seen\nI had a marvelous time ruining everything\nI had a marvelous time ruining everything\nA marvelous time ruining everything\nA marvelous time" },
+            { id: "04", title: "exile", lore: "A cinematic duet representing two people seeing the end of a relationship from opposite sides.", lyrics: "I can see you standing, honey\nWith his arms around your body\nLaughin', but the joke's not funny at all\nAnd it took you five whole minutes\nTo pack us up and leave me with it\nHoldin' all this love out here in the hall\n\nI think I've seen this film before\nAnd I didn't like the ending\nYou're not my homeland anymore\nSo what am I defending now?\nYou were my town, now I'm in exile, seein' you out\nI think I've seen this film before\n\nI can see you staring, honey\nLike he's just your understudy\nLike you'd get your knuckles bloody for me\nSecond, third, and hundredth chances\nBalancin' on breaking branches\nThose eyes add insult to injury\n\nI think I've seen this film before\nAnd I didn't like the ending\nYou're not my homeland anymore\nSo what am I defending now?\nYou were my town, now I'm in exile, seein' you out\nI think I've seen this film before\nSo I'm leavin' out the side door\n\nSo step right out, there is no amount\nOf crying I can do for you\nAll this time\nWe always walked a very thin line\nYou didn't even hear me out (You didn't even hear me out)\nYou never gave a warning sign (I gave so many signs)\nAll this time\nI never learned to read your mind (Never learned to read my mind)\nI couldn't turn things around (You never turned things around)\n'Cause you never gave a warning sign (I gave so many signs)\nSo many signs, so many signs\nYou didn't even see the signs\n\nI think I've seen this film before\nAnd I didn't like the ending\nYou're not my homeland anymore\nSo what am I defending now?\nYou were my town, now I'm in exile, seein' you out\nI think I've seen this film before\nSo I'm leavin' out the side door" },
+            { id: "05", title: "my tears ricochet", lore: "A song about a ghost haunting their own wake. A metaphor for the battle over her masters.", lyrics: "We gather here, we line up, weepin' in a sunlit room\nAnd if I'm on fire, you'll be made of ashes too\nEven on my worst day, did I deserve, babe\nAll the hell you gave me?\n'Cause when I'd fight, you used to tell me I was brave\nI didn't have it in myself to go with grace\nAnd so the battleships will sink beneath the waves\nYou had to kill me, but it killed you just the same\n\nCursing my name, wishing I stayed\nLook at how my tears ricochet\n\nWe gather stones, never knowing what they'll mean\nSome to throw, some to make a diamond ring\nYou know I didn't want to have to leave you out\nNow you're the hero flying around, wielding coats of armor\nI can go anywhere I want\nAnywhere I want, just not home\nAnd you can aim for my heart, go for blood\nBut you would still miss me in your bones\n\nAnd I still talk to you (when I'm screaming at the sky)\nAnd when you can't sleep at night (you hear my stolen lullabies)\n\nI didn't have it in myself to go with grace\nAnd you're the hero flying around, wielding coats of armor\nI can go anywhere I want\nAnywhere I want, just not home\nAnd you can aim for my heart, go for blood\nBut you would still miss me in your bones\n\nAnd I still talk to you (when I'm screaming at the sky)\nAnd when you can't sleep at night (you hear my stolen lullabies)\n\nCursing my name, wishing I stayed\nLook at how my tears ricochet" },
+            { id: "06", title: "mirrorball", lore: "The narrator survives by performing. She reflects whatever people want to see.", lyrics: "I want you to know\nI'm a mirrorball\nI'll show you every version of yourself tonight\nI'll get you out on the floor\nShimmering beautiful\nAnd I'll be on my tallest tiptoes\nSpinning in my highest heels, love\nShining just for you\n\nHush, I know they said I mean nothing\nAnd for them, it's true\nI've never been a natural, all I do is try, try, try\nI'm still on that trapeze\nI'm still trying everything to keep you looking at me\n\nBecause I'm a mirrorball\nI'll show you every version of yourself tonight\nI'll get you out on the floor\nShimmering beautiful\nAnd I'll be on my tallest tiptoes\nSpinning in my highest heels, love\nShining just for you\n\nHush, when no one is around, my dear\nYou'll find me on my tallest tiptoes\nSpinning in my highest heels, love\nShining just for you" },
+            { id: "07", title: "seven", lore: "A nostalgic look at childhood. Sensing a friend's difficult home life without having the words for it.", lyrics: "Please picture me in the trees\nI hit my peak at seven\nFeet in the swing over the creek\nI was too scared to jump in, but I, I was high in the sky\nWith Pennsylvania under me\nAre there still beautiful things?\n\nSweet tea in the summer\nCross your heart, won't tell no other\nAnd though I can't recall your face\nI still got love for you\nYour braids like a pattern\nLove you to the Moon and to Saturn\nPassed down like folk songs, the love lasts so long\n\nAnd I've been meaning to tell you\nI think your house is haunted\nYour dad is always mad and that must be why\nAnd I think you should come live with me\nAnd we can be pirates\nThen you won't have to cry\nOr hide in the closet\nAnd just like a folk song\nOur love will be passed on\n\nPlease picture me in the weeds\nBefore I learned civility\nI used to scream ferociously\nAnytime I wanted\nI, I\n\nSweet tea in the summer\nCross your heart, won't tell no other\nAnd though I can't recall your face\nI still got love for you\nYour braids like a pattern\nLove you to the Moon and to Saturn\nPassed down like folk songs, the love lasts so long" },
+            { id: "08", title: "august", lore: "The perspective of 'the other woman' (Augustine). A summer fling that felt like everything to her.", lyrics: "Salt air, and the rust on your door\nI never needed anything more\nWhispers of \"Are you sure?\"\n\"Never have I ever before\"\n\nBut I can see us lost in the memory\nAugust sipped away like a bottle of wine\n'Cause you were never mine\nYour back beneath the sun\nWishin' I could write my name on it\nWill you call when you're back at school?\nI remember thinkin' I had you\n\nBut I can see us lost in the memory\nAugust sipped away like a bottle of wine\n'Cause you were never mine\n\nBack when we were still changin' for the better\nWanting was enough\nFor me, it was enough\nTo live for the hope of it all\nCancel plans just in case you'd call\nAnd say, \"Meet me behind the mall\"\nSo much for summer love and saying \"us\"\n'Cause you weren't mine to lose\nYou weren't mine to lose, no\n\nBut I can see us lost in the memory\nAugust sipped away like a bottle of wine\n'Cause you were never mine\n\n'Cause you were never mine, never mine\nDo you remember?\nRemember when I pulled up and said, \"Get in the car\"\nAnd then canceled my plans just in case you'd call?\nBack when I was livin' for the hope of it all, for the hope of it all\n\"Meet me behind the mall\"\n\nRemember when I pulled up and said, \"Get in the car\"\nAnd then canceled my plans just in case you'd call?\nBack when I was livin' for the hope of it all (for the hope of it all)" },
+            { id: "09", title: "this is me trying", lore: "The struggle of daily existence while dealing with mental health or regret.", lyrics: "I've been having a hard time adjusting\nI had a shiny wheel, now they're rusting\nI didn't know if you'd care if I came back\nI have a lot of regrets about that\nPulled the car off the road to the lookout\nCould've followed my fears all the way down\nAnd I don't quite know what to say\nBut I'm here in your doorway\n\nI just wanted you to know that this is me trying\nI just wanted you to know that this is me trying\n\nThey told me all of my cages were mental\nSo I got wasted like all my potential\nAnd my words shoot to kill when I'm mad\nI have a lot of regrets about that\nI was so ahead of the curve, the curve became a sphere\nFell behind on my classmates, and I ended up here\nPourin' out my heart to a stranger\nBut I didn't pour the whiskey\n\nI just wanted you to know that this is me trying\nI just wanted you to know that this is me trying\nAt least I'm trying\n\nAnd it's hard to be at a party when I feel like an open wound\nIt's hard to be anywhere these days when all I want is you\nYou're a flashback in a film reel on the one screen in my town\n\nAnd I just wanted you to know that this is me trying\n(And I just wanted you to know)\nI just wanted you to know that this is me trying\nAt least I'm trying" },
+            { id: "10", title: "illicit affairs", lore: "A brutal look at the reality of cheating—the 'dwindling mercurial highs'.", lyrics: "Make sure nobody sees you leave\nHood over your head, keep your eyes down\nTell your friends you're out for a run\nYou'll be flushed when you return to the town\nTake the words for what they are\nA dwindling mercurial high\nA drug that only worked\nThe first few hundred times\n\nAnd that's the thing about illicit affairs\nAnd clandestine meetings and longing stares\nIt dies and it dies and it dies\nA million little times\n\nLeave the perfume on the shelf\nThat you picked out just for him\nSo you leave no trace behind\nLike you don't even exist\nTake the words for what they are\nA dwindling mercurial high\nA drug that only worked\nThe first few hundred times\n\nAnd that's the thing about illicit affairs\nAnd clandestine meetings and longing stares\nIt dies and it dies and it dies\nA million little times\n\nAnd you wanna scream\nDon't call me \"kid,\" don't call me \"baby\"\nLook at this godforsaken mess that you made me\nYou showed me colors you know I can't see with anyone else\nDon't call me \"kid,\" don't call me \"baby\"\nLook at this idiotic fool that you made me\nYou taught me a secret language I can't speak with anyone else\n\nAnd you know damn well\nFor you, I would ruin myself\nA million little times" },
+            { id: "11", title: "invisible string", lore: "A celebration of fate. The 'red thread of destiny' connecting two people through parallel lives.", lyrics: "Green was the color of the grass\nWhere I used to read at Centennial Park\nI used to think I would meet somebody there\nTeal was the color of your shirt\nWhen you were sixteen at the yogurt shop\nYou used to work at to make a little money\n\nTime, curious time\nGave me no compasses, gave me no signs\nWere there clues I didn't see?\nAnd isn't it just so pretty to think\nAll along there was some\nInvisible string\nTying you to me?\n\nBad was the blood of the song in the cab\nOn your first trip to LA\nYou ate at olive garden with your best friend\nCold was the steel of my axe to grind\nFor the boys who broke my heart\nNow I send their babies presents\n\nGold was the color of the leaves\nWhen I showed you around Centennial Park\nHell was the journey but it brought me heaven\n\nTime, wondrous time\nGave me no compasses, gave me no signs\nWere there clues I didn't see?\nAnd isn't it just so pretty to think\nAll along there was some\nInvisible string\nTying you to me?\n\nA string that pulled me out of all my wrong arms, right into that dive bar\nSomething wrapped all of my past mistakes in glass\nLong-gone gulped down ice-cold beer\nGave me my enlightened spirit\nOne single thread of gold tied me to you" },
+            { id: "12", title: "mad woman", lore: "A song about female rage and gaslighting. Response to business battles and defense of self.", lyrics: "What do you sing on your drive home?\nDo you see my face in the neighbor's lawn?\nDoes she smile? Or does she mouth, \"Fuck you forever?\"\nEvery time you call me crazy, I get more crazy\nWhat about that?\nAnd when you say I seem angry, I get more angry\n\nAnd no one likes a mad woman\nYou made her like that\nAnd you'll poke that bear 'til her claws come out\nAnd you find something to wrap your noose around\nAnd there's nothing like a mad woman\nWhat a shame she went mad\nNo one likes a mad woman\nYou made her like that\n\nNow I breathe flames each time I talk\nMy cannons all fired at your yacht\nThey say \"move on,\" but you know I won't\nAnd women like hunting witches too\nDoing your dirtiest work for you\nIt's obvious that wanting me dead\nHas really brought you two together\n\nAnd no one likes a mad woman\nYou made her like that\nAnd you'll poke that bear 'til her claws come out\nAnd you find something to wrap your noose around\nAnd there's nothing like a mad woman\nWhat a shame she went mad\nNo one likes a mad woman" },
+            { id: "13", title: "epiphany", lore: "Parallel between soldiers in war and healthcare workers in crisis.", lyrics: "Keep your helmet, keep your life, son\nJust a flesh wound, here's your rifle\nCrawling up the beaches now\n\"Sir, I think he's bleeding out\"\nAnd some things you just can't speak about\n\nWith you I serve, with you I fall down, down\nWatch you breathe in, watch you breathing out, out\n\nSomething med school did not teach you\nOur house of cards, some patient entreating\n\"Only twenty minutes to sleep\"\nBut you dream of some epiphany\nJust one single glimpse of relief\nTo make some sense of what you've seen\n\nWith you I serve, with you I fall down, down\nWatch you breathe in, watch you breathing out, out\n\nOnly twenty minutes to sleep\nBut you dream of some epiphany\nJust one single glimpse of relief\nTo make some sense of what you've seen" },
+            { id: "14", title: "betty", lore: "James finally speaks. He is young, impulsive, and convinced honesty will fix everything.", lyrics: "Betty, I won't make assumptions\nAbout why you switched your homeroom but\nI think it's 'cause of me\nBetty, one time I was riding on my skateboard\nWhen I passed your house\nIt's like I couldn't breathe\n\nYou heard the rumors from Inez\nYou can't believe a word she says\nMost times, but this time it was true\nThe worst thing that I ever did\nWas what I did to you\n\nBut if I just showed up at your party\nWould you have me? Would you want me?\nWould you tell me to go fuck myself?\nOr lead me to the garden?\nIn the garden would you trust me\nIf I told you it was just a summer thing?\nI'm only seventeen, I don't know anything\nBut I know I miss you\n\nBetty, I know where it all went wrong\nYour favorite song was playing\nFrom the far side of the gym\nI was nowhere to be found\nI hate the crowds, you know that\nPlus, I saw you dance with him\n\nYou heard the rumors from Inez\nYou can't believe a word she says\nMost times, but this time it was true\nThe worst thing that I ever did\nWas what I did to you\n\nI was walking home on broken cobblestones\nGuilt within at sights I've never known\n\"Get in, car,\" Augustine raised her hand\nShe said \"James, get in, let's drive\"\nThose days turned into nights\nSlept next to her, but\nI dreamt of you all summer long\n\nBetty, I'm here on your doorstep\nAnd I planned it out for weeks now\nIt's finally when I walk in\nI'm only seventeen, I don't know anything\nBut I know I miss you\n\nYeah, I showed up at your party\nWill you have me? Will you love me?\nWill you kiss me on the porch\nIn front of all your stupid friends?\nIf you kiss me, will it be just like I dreamed it?\nWill it patch your broken wings?\nI'm only seventeen, I don't know anything\nBut I know I miss you" },
+            { id: "15", title: "peace", lore: "The narrator knows her life is chaos. She can't promise peace, only devotion.", lyrics: "Our coming-of-age has come and gone\nSuddenly this summer, it's clear\nI never had a courage of my convictions\nAs long as danger is near\nAnd it's just around the corner, darlin'\n'Cause it lives in me\nNo, I could never give you peace\n\nBut I'm a fire and I'll keep your brittle heart warm\nIf your cascade, ocean wave blues come\nAll these people think love's for show\nBut I would die for you in secret\nThe devil's in the details, but you got a friend in me\nWould it be enough if I could never give you peace?\n\nYour integrity makes me seem small\nYou paint dreamscapes on my wall\nI talk shit about you behind your back\nJust to know I'm telling my own truth\nAnd you know that I'd swing with you for the fences\nSit with you in the trenches\nGive you my wild, give you a child\nGive you the silence that only comes when two people understand each other\nFamily that I chose, now that I see your brother as my brother\nIs it enough?\n\nBut I'm a fire and I'll keep your brittle heart warm\nIf your cascade, ocean wave blues come\nAll these people think love's for show\nBut I would die for you in secret\nThe devil's in the details, but you got a friend in me\nWould it be enough if I could never give you peace?" },
+            { id: "16", title: "hoax", lore: "Love that refuses to die even when it should. Pain has become familiar.", lyrics: "My only one\nMy smoked glass windows become happiness\nMake it my old friend\nWaiting for you to be my light again\nYour faithless love's the only hoax I believe in\n\nDon't want no other shade of blue but you\nNo other sadness in the world would do\n\nMy best laid plan\nYour sleight of hand\nMy barren land\nI am ash from your fire\n\nStood on the cliffside screaming, \"Give me a reason\"\nYour faithless love's the only hoax I believe in\nDon't want no other shade of blue but you\nNo other sadness in the world would do\n\nYou know I left a part of me back in New York\nYou knew the hero died so what's the movie for?\nYou knew it still hurts underneath my scars\nFrom when they pulled me apart\nYou knew the password so I let you in the door\nYou knew you won so what's the point of keeping score?\nYou knew it still hurts underneath my scars\nFrom when they pulled me apart\nBut what you did was just as dark\n\nDarling, this was just as hard\nAs when they pulled me apart\n\nMy only one\nMy kingdom come undone\nMy broken drum\nYou have beaten my heart\n\nDon't want no other shade of blue but you\nNo other sadness in the world would do" },
+            { id: "17", title: "the lakes", lore: "Escaping society to live among poets and ghosts. Solitude over spectacle.", lyrics: "Is it romantic how all my elegies eulogize me?\nI'm not cut out for all these cynical clones\nThese hunters with cell phones\n\nTake me to the lakes where all the poets went to die\nI don't belong, and my beloved, neither do you\nThose Windermere peaks look like a perfect place to cry\nI'm setting off, but not without my muse\n\nWhat should be over burrowed under my skin\nIn heart-stopping waves of hurt\nI've come too far to watch some namedropping sleaze\nTell me what are my words worth\n\nTake me to the lakes where all the poets went to die\nI don't belong, and my beloved, neither do you\nThose Windermere peaks look like a perfect place to cry\nI'm setting off, but not without my muse\n\\n\nI want auroras and sad prose\nI want to watch wisteria grow right over my bare feet\n'Cause I haven't moved in years\nAnd I want you right here\nA red rose grew out of ice frozen ground\nWith no one around to tweet it\nWhile I bathe in cliffside pools\nWith my calamitous love and insurmountable grief" }
+        ];
+
+        // Logic to build the tracklist grid
+        const container = document.getElementById('tracklist-container');
+        const songModal = new bootstrap.Modal(document.getElementById('songModal'));
+
+        songs.forEach(song => {
+            const card = document.createElement('div');
+            card.className = 'col-md-4 col-sm-6';
+            card.innerHTML = `
+                <div class="song-card" data-aos="fade-up">
+                    <span class="label-text">Track ${song.id}</span>
+                    <h3 style="font-style: italic;">${song.title}</h3>
+                </div>
+            `;
+            
+            card.onclick = () => {
+                document.getElementById('songTitle').innerText = song.title;
+                document.getElementById('songLore').innerText = song.lore;
+                document.getElementById('songLyrics').innerText = song.lyrics;
+                songModal.show();
+            };
+            
+            container.appendChild(card);
+        });
+
+        // Initialize Scroll Animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html>
+       
